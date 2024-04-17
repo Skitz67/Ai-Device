@@ -51,5 +51,6 @@ def imports(appname, arguements = []):
             return currentApp.run(arguements)
             
         
+print(input("list of args: ").split(" "))
 while True:
     print(imports(input("AppName: "), input("list of args: ").split(" ")))
