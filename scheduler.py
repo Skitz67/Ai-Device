@@ -17,12 +17,20 @@ class schedular:
         if shouldManageFiles == "True":
             self.Load(self.savefile)
         #add task to queue
+
         if Priority == "True":
-                #add task to front of queue
-                self.q.put_nowait(task)
-                if shouldManageFiles == "True":
-                    self.Save(self.savefile)
-                return "Task Added"
+            datalist = self.Load(self.savefile)
+            #add task to front of list
+            datalist.insert(0, task)
+            self.q.queue.clear()
+            #adds list back into queue
+            for i in range(len(datalist)):
+                 self.q.put(datalist[i])
+
+            if shouldManageFiles == "True":
+                self.Save(self.savefile)
+
+            return "Task Added"
         elif Priority == "False":
                 #add task to end of queue
                 self.q.put(task)
