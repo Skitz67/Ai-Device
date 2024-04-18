@@ -1,6 +1,7 @@
 import time
 import STM
 import scheduler as sch
+from colours import *
 
 schedular = sch.schedular()
 
@@ -20,8 +21,12 @@ class app:
             else:
                 return self.callBack(*args)
         except Exception as e:
-            print(
-                f"An error occured when executing the app '{self.callSigns[0]}' with the arguments '{args}'\nError: {e}"
+            print_rgb(
+                f"An error occured when executing the app '{self.callSigns[0]}' with the arguments '{args}'\nError: {e}",
+                255,
+                0,
+                0,
+                bold=True,
             )
 
     # instanciate application
@@ -57,5 +62,6 @@ def imports(appname, arguements=[]):
             return currentApp.run(arguements)
 
 
+print_rgb("Junction.py is now active", 0, 255, 0, bold=True)
 while True:
     print(imports(input("AppName: "), input("list of args: ").split(" ")))
