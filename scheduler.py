@@ -50,16 +50,18 @@ class schedular:
     def queueSize(self, shouldManageFiles = "True"):
         if shouldManageFiles == "True":
             self.Load(self.savefile)
-
-            #return number of tasks in queue
-            return self.q.qsize()
+        #return number of tasks in queue
+        return self.q.qsize()
 
 
     def nextTask(self, shouldManageFiles = "True", block = True):
         if shouldManageFiles == "True":
             self.Load(self.savefile)
-        
+
         return self.q.get(block)
+
+        
+
 
 
     def getAllTasks(self, shouldManageFiles = "True"):
@@ -85,10 +87,12 @@ class schedular:
         if shouldManageFiles == "True":
             self.Load(self.savefile)
             #remove task from queue
-            #self.q.get()
-            print(self.q.task_done())
+            self.q.task_done()
             if shouldManageFiles == "True":
                 self.Save(self.savefile)
+            return "Task Finished"
+        else:
+            self.q.task_done()
             return "Task Finished"
 
     
